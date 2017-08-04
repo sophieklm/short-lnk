@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 export default class Link extends React.Component {
   onLogout() {
-    browserHistory.push('/');
+    Accounts.logout();
   }
   render() {
     return (
