@@ -5,28 +5,25 @@ export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: this.props.count || 0
+      error: ''
     };
   }
-  increment() {
+  onSubmit(e) {
+    e.preventDefault();
     this.setState({
-      count: this.state.count + 1
-    });
-  }
-  decrement() {
-    this.setState({
-      count: this.state.count - 1
+      error: 'Something went wrong'
     });
   }
   render() {
     return (
       <div>
         <h1>Signup to Short Lnk</h1>
-        <p>{this.state.count}</p>
-          <div>
-            <button onClick={this.increment.bind(this)}>+1</button>
-            <button onClick={this.decrement.bind(this)}>-1</button>
-          </div>
+        {this.state.error ? <p>{this.state.error}</p> : undefined}
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <input type="email" name="email" placeholder="Email"/>
+          <input type="password" name="password" placeholder="Password"/>
+          <button>Create Account</button>
+        </form>
         <Link to="/">Have an account?</Link>
       </div>
     );
