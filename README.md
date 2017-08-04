@@ -1,6 +1,6 @@
 # Short Link
 
-Short link app using Meteor, React and Mongo
+Short link app using React with Meteor
 
 ## How to Use
 
