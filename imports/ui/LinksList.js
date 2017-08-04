@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
 import { Links } from '../api/links';
@@ -12,13 +13,15 @@ export default class LinksList extends React.Component {
   }
   componentDidMount() {
     console.log('componentDidMount LinksList');
-    Tracker.autorun(() => {
+    this.linksTracker = Tracker.autorun(() => {
+      Meteor.subscribe('links');
       let links = Links.find().fetch();
       this.setState({ links });
     });
   }
   componentWillUnmount() {
     console.log('componentWillUnmount LinksList');
+    this.linksTracker.stop();
   }
   renderLinksListItems() {
     return this.state.links.map((link) => {
