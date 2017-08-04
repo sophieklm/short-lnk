@@ -14,17 +14,13 @@ Meteor.methods({
     if(!this.userId) {
       throw new Meteor.Error('not-authorised');
     }
-    try {
-      new SimpleSchema({
-        url: {
-          type: String,
-          label: 'Your link',
-          regEx: SimpleSchema.RegEx.Url
-        }
-      }).validate({url});
-    } catch (e) {
-      throw new Meteor.Error(400, e.message);
-    }
+    new SimpleSchema({
+      url: {
+        type: String,
+        label: 'Your link',
+        regEx: SimpleSchema.RegEx.Url
+      }
+    }).validate({url});
     Links.insert({
       url,
       userId: this.userId
