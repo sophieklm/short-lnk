@@ -12,8 +12,5 @@ Tracker.autorun(() => {
 });
 
 Meteor.startup(() => {
-  Meteor.call('addNumbers', 5, 4, (err, res) => {
-    console.log('Add Number Arguments', err, res);
-  });
   ReactDOM.render(routes, document.getElementById('app'));
 });

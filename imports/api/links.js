@@ -9,17 +9,13 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  greetUser(name) {
-    console.log('greetUser is running');
-    if(!name) {
-      throw new Meteor.Error('invalid-arguments', 'Name is required');
+  'links.insert'(url) {
+    if(!this.userId) {
+      throw new Meteor.Error('not-authorised');
     }
-    return `Hello ${name}!`;
-  },
-  addNumbers(a, b) {
-    if(typeof a !== 'number' || typeof b !== 'number') {
-      throw new Meteor.Error('invalid-arguments', 'Expecting a number');
-    }
-    return a + b;
+    Links.insert({
+      url,
+      userId: this.userId
+    });
   }
 });
