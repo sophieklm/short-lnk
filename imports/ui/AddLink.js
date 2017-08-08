@@ -18,7 +18,7 @@ export default class AddLink extends React.Component {
     if (url) {
       Meteor.call('links.insert', url, (err, res) => {
         if (!err) {
-          this.setState({ url: ''});
+          this.setState({ url: '', isOpen: false });
         }
       });
       this.refs.url.value = '';
